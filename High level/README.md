@@ -2,8 +2,9 @@
 
 ## Topics
 
-1. <a href="#PREPARATION">Preparation of the project</a>
-2. Project structure
+* <a href="#PREPARATION">Preparation of the project</a>
+* <a href="#PROJECT_STRUCTURE">Project structure</a>
+* <a href="#TODO_LIST">Todo List</a>
 
 <div id="PREPARATION"></div>
 
@@ -44,3 +45,26 @@ pip3 install -r requirements.txt
 ```shell
 deactivate
 ```
+
+<div id="PROJECT_STRUCTURE"></div>
+
+## Project Structure
+
+```
+.
+├── examples            Folder with examples
+├── libs
+│   ├── can             Folder with CAN logic module
+│   ├── motors          Folder with Motor logic module
+│   └── __init__.py
+├── src
+│   └── main.py         Main script
+└── requirements.txt    File with modules to install into the venv
+```
+
+<div id="TODO_LIST"></div>
+
+## Todo List
+
+-[ ] TODO TASK
+-[x] TODO TASK
