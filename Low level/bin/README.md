@@ -1,5 +1,5 @@
 # How to upload firmware on esp32 board
-**Step 1:** Eraese flash
+**Step 1:** Erase flash
 ```
 esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
 ```
