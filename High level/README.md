@@ -66,6 +66,6 @@ deactivate
 
 ## Todo List
 
--[ ] TODO TASK
+- [ ] TODO TASK
 
--[x] TODO TASK
+- [x] TODO TASK
