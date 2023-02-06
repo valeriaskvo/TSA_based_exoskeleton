@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../')
 
-from can import CAN_Bus
+from libs.can import CAN_Bus
 from time import sleep
 import struct
 
