@@ -6,9 +6,7 @@ import struct
 CAN_TX = 26
 CAN_RX = 27
 
-can = CAN(0, tx=CAN_TX, rx=CAN_RX,
-          extframe=False, mode=CAN.NORMAL,
-          baudrate=1000000)
+can = CAN(0, tx=CAN_TX, rx=CAN_RX, extframe=False, mode=CAN.NORMAL, baudrate=1000000)
 
 i = 0
 while True:
@@ -22,5 +20,5 @@ while True:
         can.send(tuple(command), 0x1)   # send a message
         i = 0
     can.clear_rx_queue()        # clear messages in the FIFO
-    can.clear_tx_queue()  
+    can.clear_tx_queue()
     sleep(0.01)
