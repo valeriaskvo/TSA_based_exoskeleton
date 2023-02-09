@@ -37,9 +37,9 @@ class IMU():
             self.vals[key] = self.bytes_toint(raw_ints[i*2], raw_ints[i*2+1])
             if key == "Tmp":
                 self.vals[key] = self.vals[key] / 340.00 + 36.53
-        return self.vals 
+        return self.vals
 
-    
+
     def print_data(self):
         self.get_data()
         str_out = f"ID: {self.id}"
@@ -49,7 +49,7 @@ class IMU():
                 str_out += f"{key} {self.vals[key]:5.2f}"
             else:
                 str_out += f"{key} {self.vals[key]:5}"
-        print(str_out)   
+        print(str_out)
 
     def test(self):  # ONLY FOR TESTING! Also, fast reading sometimes crashes IIC
         from time import sleep

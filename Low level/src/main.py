@@ -1,35 +1,24 @@
 from time import sleep
-from machine import SoftI2C, ADC, Pin
+
+from machine import SoftI2C, Pin, CAN, reset
+
 from IMU import IMU
+from can import CanIMUMessage
 
-def generate_msg(vals, msg=""):
-    for key in vals:
-        if key == "Tmp":
-            continue
-        if msg == "":
-            msg = str(vals[key])
-        else:
-            msg += " " + str(vals[key])
-    return msg
+reset()  # To clear buffer for CAN bus
 
-# IMU
-i2c_1 = SoftI2C(scl=Pin(22), sda=Pin(21)) 
-imu_1 = IMU(i2c_1, imu_id=1)
+i2c = SoftI2C(scl=Pin(18), sda=Pin(19))
+CAN_TX = 26
+CAN_RX = 27
 
-i2c_2 = SoftI2C(scl=Pin(19), sda=Pin(18))
-imu_2 = IMU(i2c_2, imu_id=2)
-
-# Analog IN
-adc = ADC(Pin(12))
-val = adc.read_u16()
+interface = CAN(0, tx=CAN_TX, rx=CAN_RX, extframe=False, mode=CAN.NORMAL, baudrate=1000000)
+imu = IMU(i2c, imu_id=2)
+msg = CanIMUMessage(imu)
 
 while True:
-    imu_d1 = imu_1.get_data()
-    msg = generate_msg(imu_d1)
-    imu_d2 = imu_2.get_data()
-    msg = generate_msg(imu_d2, msg)
-    force = adc.read_u16()
-    msg += " " + str(force)
-    print(msg)
-    
-    sleep(0.0001)
+    print("=" * 7)
+    interface.send(msg.get_acceleration(), 0x130)
+    interface.send(msg.get_gyroscope(), 0x130)
+    interface.clear_rx_queue()
+    interface.clear_tx_queue()
+    sleep(1)
