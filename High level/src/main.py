@@ -78,6 +78,7 @@ except KeyboardInterrupt:
     plt.figure(figsize=(18, 6))
     plt.plot(raw)
     plt.grid(True, linestyle="--", linewidth=1, alpha=0.7)
+    plt.savefig("force.png")
     plt.show()
 
     fig, axes = plt.subplots(2, 2, figsize=(18, 6))
@@ -91,6 +92,7 @@ except KeyboardInterrupt:
             axes[i][j].plot(dr[:, 2], label="z")
             axes[i][j].grid(True, linestyle="--", linewidth=1, alpha=0.7)
             axes[i][j].legend()
+    plt.savefig("imu.png")
     plt.show()
 
 except Exception as e:

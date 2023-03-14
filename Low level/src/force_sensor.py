@@ -14,7 +14,7 @@ class ForceSensor:
             self.sensor = ADC(pin)
         else:
             raise ValueError(f"Pin: {type(pin)} type is not valid for ADC, only `int` / `Pin`")
-
+        self.sensor.atten(ADC.ATTN_11DB)
         self.device_id = _id
         self.__can = CanBus(can)
         self.offset = self.__set_zero()
