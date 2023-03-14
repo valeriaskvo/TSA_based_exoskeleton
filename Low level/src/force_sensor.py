@@ -35,5 +35,5 @@ class ForceSensor:
         return int(val - self.offset)
 
     def send(self, board_id: int) -> None:
-        val = self.read_raw()
-        self.__can.send(board_id, encode(self.device_id, [0, 0, val], data_to_byte=True))
+        val = self.sensor.read_u16()
+        self.__can.send(board_id, encode(self.device_id, [val], data_to_byte=True))

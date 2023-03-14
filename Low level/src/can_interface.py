@@ -46,7 +46,7 @@ def encode(
     nulls = [0x00] * (3 - len(data)) * 2
     message.extend(nulls)
     for item in data:
-        b = int.to_bytes(item, 2, byteorder=byte_order, signed=signed)
+        b = int.to_bytes(item, 2, byte_order, signed)
         message.extend(list(b))
     return message
 
