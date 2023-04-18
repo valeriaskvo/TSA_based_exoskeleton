@@ -54,9 +54,10 @@ def encode(
 class CanBus:
 
     def __init__(self, can: CAN) -> None:
-        self._can = can
-        self._can.clear_rx_queue()
-        self._can.clear_tx_queue()
+        if can is not None:
+            self._can = can
+            self._can.clear_rx_queue()
+            self._can.clear_tx_queue()
 
     def __del__(self) -> None:
         self._can.clear_rx_queue()

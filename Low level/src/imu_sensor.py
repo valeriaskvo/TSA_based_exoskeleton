@@ -13,6 +13,7 @@ class IMUSensor:
         self._i2c.start()
         self._i2c.writeto(self.address, bytearray([107, 0]))
         self._i2c.stop()
+        self.device_id = address
 
     def __del__(self) -> None:
         self._can.__del__()
