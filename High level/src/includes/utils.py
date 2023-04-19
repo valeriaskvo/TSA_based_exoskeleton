@@ -22,7 +22,7 @@ def limiter(value: LimitTypes, gain: Union[LimitTypes, Tuple[LimitTypes, LimitTy
 
     if abs(gain) >= abs(value) and gain >= 0:
         return value
-    elif abs(gain) <= abs(value):
+    elif abs(gain) <= abs(value) and gain < 0:
         return value
 
     return sign(value) * abs(gain)

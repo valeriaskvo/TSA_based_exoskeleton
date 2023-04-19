@@ -51,7 +51,7 @@ def protection(func: Callable[..., Any]) -> Callable[..., Optional[Callable[...,
 
 class Gyems:
 
-    def __init__(self, bus: CanBus, motor_id: int = None, max_torque: int = 6) -> None:
+    def __init__(self, bus: CanBus, motor_id: int = None, max_torque: float = 6) -> None:
         self.status = MotorStatus(0, 0)
         self.state = {
             "torque": 0.0,

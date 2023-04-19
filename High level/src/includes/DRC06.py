@@ -56,7 +56,7 @@ class PID:
 
 class DRC06:
 
-    def __init__(self, bus: CanBus, motor_id: int = None, max_torque: int = 6) -> None:
+    def __init__(self, bus: CanBus, motor_id: int = None, max_torque: float = 6) -> None:
         self.bus = bus.bus
         self.motor_id = motor_id if motor_id is not None else MOTOR_ID
         self.max_torque = max_torque
