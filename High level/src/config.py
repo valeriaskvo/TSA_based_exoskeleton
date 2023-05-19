@@ -3,6 +3,8 @@ IMU_ID_1 = 0x68  # IMU sensor
 IMU_ID_2 = 0x69  # IMU sensor
 ENCODER_ID_1 = 0x18  # Encoder
 ENCODER_ID_2 = 0x19  # Encoder
+FORCE_ID_1 = 0x28  # Force sensor
+FORCE_ID_2 = 0x29  # Force sensor
 
 """CAN Bus package for IMU Sensors
 Package Structure:
