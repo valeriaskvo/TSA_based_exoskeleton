@@ -1,4 +1,4 @@
-from time import sleep
+from time import sleep, perf_counter
 
 from includes import Gyems, CanBus
 
@@ -8,10 +8,12 @@ motor = Gyems(bus)
 try:
     motor.enable()
     motor.set_zero()
-    motor.set_speed(-360)
-    while True:
-        print(motor.info())
-        sleep(0.1)
+    motor.set_angle(360, 36)
+    sleep(10)
+
+    # while True:
+    #     print(motor.info())
+    #     sleep(0.1)
 except KeyboardInterrupt:
     pass
 

@@ -13,8 +13,8 @@ can = CAN(0, tx=CAN_TX, rx=CAN_RX, extframe=False, mode=CAN.LOOPBACK, baudrate=1
 # ================== Sensors ==================
 
 sensors = {
-    IMU_ID_1: IMUSensor(i2c, can, IMU_ID_1),
-    IMU_ID_2: IMUSensor(i2c, can, IMU_ID_2),
+    # IMU_ID_1: IMUSensor(i2c, can, IMU_ID_1),
+    # IMU_ID_2: IMUSensor(i2c, can, IMU_ID_2),
     ENCODER_ID_1: Encoder(ENCODER_ID_1, ENC_A1, ENC_B1, can),
     ENCODER_ID_2: Encoder(ENCODER_ID_2, ENC_A2, ENC_B2, can),
     FORCE_ID_1: ForceSensor(FORCE_ID_1, FORCE_SENSOR_1, can),
@@ -29,6 +29,7 @@ class Robot:
                         + BIT_1.value() * (2 ** 2) \
                         + BIT_2.value() * (2 ** 1) \
                         + BIT_3.value() * (2 ** 0)
+        print(self.board_id)
 
     def run(self, __can: CAN):
         while True:

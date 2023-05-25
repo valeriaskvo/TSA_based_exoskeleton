@@ -1,4 +1,4 @@
-BOARD_ID = 0x130  # Board Id 0x130 + (0..8) ids
+BOARD_ID = 0x132  # Board Id 0x130 + (0..8) ids
 IMU_ID_1 = 0x68  # IMU sensor
 IMU_ID_2 = 0x69  # IMU sensor
 ENCODER_ID_1 = 0x18  # Encoder

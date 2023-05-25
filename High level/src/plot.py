@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv("result_test_1.csv", sep=";")
+df = pd.read_csv("data/result_test_lera.csv", sep=";")
 data = df.to_numpy()
 
 fig, axes = plt.subplots(4, 2, figsize=(18, 6))

@@ -21,9 +21,9 @@ class Computer:
         self.can = CanBus()
         self.packets: List[Packet] = []
         self.file_name = file_name
-        self.motor = Gyems(self.can)
-        self.motor.enable()
-        self.motor.set_zero()
+        # self.motor = Gyems(self.can)
+        # self.motor.enable()
+        # self.motor.set_zero()
         self.motor_data = []
         self.speed = speed
 
@@ -124,12 +124,12 @@ class Computer:
         a = np.asarray(result)
         np.savetxt(f"data/{self.file_name}", a, delimiter=";", header=";".join(headers))
 
-        headers = list(self.motor_data[0].keys())
-        data = np.asarray([list(f.values()) for f in self.motor_data])
-        np.savetxt(f"data/motor_{self.file_name}", data, delimiter=";", header=";".join(headers))
+        # headers = list(self.motor_data[0].keys())
+        # data = np.asarray([list(f.values()) for f in self.motor_data])
+        # np.savetxt(f"data/motor_{self.file_name}", data, delimiter=";", header=";".join(headers))
 
     def run(self) -> None:
-        self.motor.set_speed(self.speed)
+        # self.motor.set_speed(self.speed)
         try:
             while True:
                 imu1 = self.can.request(BOARD_ID, [IMU_ID_1, 0, 0, 0, 0, 0, 0, 0], n_packets=2)
@@ -138,8 +138,8 @@ class Computer:
                 enc2 = self.can.request(BOARD_ID, [ENCODER_ID_2, 0, 0, 0, 0, 0, 0, 0])
                 force1 = self.can.request(BOARD_ID, [FORCE_ID_1, 0, 0, 0, 0, 0, 0, 0])
                 force2 = self.can.request(BOARD_ID, [FORCE_ID_2, 0, 0, 0, 0, 0, 0, 0])
-                state = self.motor.info()
-                self.motor_data.append(state)
+                # state = self.motor.info()
+                # self.motor_data.append(state)
                 for response in [*imu1, *imu2, *enc1, *enc2, *force1, *force2]:
                     if response.data[0] in [IMU_ID_1, IMU_ID_2]:
                         self.packets.append(self.decode_imu(response.data))
@@ -147,24 +147,25 @@ class Computer:
                         self.packets.append(self.decode(response.data))
                 sleep(0.0001)
         except:
-            try:
-                self.motor.set_speed(-self.speed)
-                while self.motor.info()["angle"] > 0:
-                    continue
-                self.motor.set_speed(0)
-            except:
-                pass
+            pass
+            # try:
+            #     self.motor.set_speed(-self.speed)
+            #     while self.motor.info()["angle"] > 0:
+            #         continue
+            #     self.motor.set_speed(0)
+            # except:
+            #     pass
         finally:
             self.close()
             self.save()
 
     def close(self):
-        self.motor.disable(True)
-        sleep(1)
+        # self.motor.disable(True)
+        # sleep(1)
         self.can.close()
-        print(self.motor.status)
+        # print(self.motor.status)
 
 
 if __name__ == '__main__':
-    comp = Computer("result_test_0.csv", 360)
+    comp = Computer("result_test_lera.csv", 360)
     comp.run()
